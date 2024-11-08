@@ -36,7 +36,8 @@ It is very much a prototype right now.
 Create a `.env` file in the root directory of the project with the following content:
 
 ```
-USERNAME=your_username APP_PASSWORD=your_app_passwo
+USERNAME=your_username
+APP_PASSWORD=your_app_passwo
 ```
 
 ## Usage
