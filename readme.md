@@ -10,7 +10,8 @@ It is very much a prototype right now.
 - [ ] Improve documentation
 - [ ] Add unit tests
 - [ ] Implement error handling
-- [ ] Add other commands
+- [x] Add other commands (fetch, stream)
+- [ ] Anything else?
 
 ## Prerequisites
 
