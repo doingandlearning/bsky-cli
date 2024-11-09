@@ -2,10 +2,8 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 	"os"
-	"time"
 
 	"github.com/joho/godotenv"
 )
@@ -30,7 +28,6 @@ func main() {
 
 	postContent := flag.String("content", "", "Content of the post")
 	fetchFeed := flag.Bool("fetch", false, "Fetch the latest 10 posts from the feed")
-	stream := flag.Bool("stream", false, "Continuously fetch new posts")
 	flag.Parse()
 
 	switch {
@@ -43,15 +40,6 @@ func main() {
 		err := getLatestPosts(authToken, did)
 		if err != nil {
 			log.Fatalf("Error fetching latest posts: %v", err)
-		}
-	case *stream:
-		for {
-			fmt.Println("Fetching latest posts...")
-			err := getLatestPosts(authToken, did)
-			if err != nil {
-				log.Printf("Error fetching latest posts: %v", err)
-			}
-			time.Sleep(10 * time.Second)
 		}
 	default:
 		log.Fatalf("Error: Provide -content to post, -fetch to retrieve feed, or -stream to start streaming")
