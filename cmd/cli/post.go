@@ -76,16 +76,41 @@ func PrintPost(post interface{}) {
 	textColor := getColorFromEnv("TEXT_COLOR", color.New(color.FgBlue))
 	urlColor := getColorFromEnv("URL_COLOR", color.New(color.FgCyan))
 
+	// Verify post structure and retrieve fields
 	postData, ok := post.(map[string]interface{})
 	if !ok {
+		fmt.Println("Invalid post format")
 		return
 	}
 
-	authorData, _ := postData["post"].(map[string]interface{})["author"].(map[string]interface{})
+	// Determine if the structure includes a "post" field (feed response) or direct "author" and "record" fields (search response)
+	var authorData, recordData map[string]interface{}
+	var uri string
+
+	if postMap, hasPostField := postData["post"].(map[string]interface{}); hasPostField {
+		// Feed response structure
+		authorData, _ = postMap["author"].(map[string]interface{})
+		recordData, _ = postMap["record"].(map[string]interface{})
+		uri, _ = postMap["uri"].(string)
+	} else {
+		// Search response structure
+		authorData, _ = postData["author"].(map[string]interface{})
+		recordData, _ = postData["record"].(map[string]interface{})
+		uri, _ = postData["uri"].(string)
+	}
+
+	// Ensure both author and record data are available
+	if authorData == nil {
+		fmt.Println("Post missing 'author' field")
+		return
+	}
+	if recordData == nil {
+		fmt.Println("Post missing 'record' field")
+		return
+	}
+
 	displayName, _ := authorData["displayName"].(string)
-	record, _ := postData["post"].(map[string]interface{})["record"].(map[string]interface{})
-	text, _ := record["text"].(string)
-	uri, _ := postData["post"].(map[string]interface{})["uri"].(string)
+	text, _ := recordData["text"].(string)
 	url := transformUriToUrl(uri)
 
 	// Print using color functions

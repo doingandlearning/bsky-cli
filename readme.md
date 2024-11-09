@@ -7,11 +7,12 @@ It is very much a prototype right now.
 ## TODO:
 
 - [x] Add color to the terminal
-- [ ] Optionally exclude reposts
-- [ ] Work on build
+- [x] Exclude multiple repeats on stream
+- [x] Add search
+- [ ] Work out how to distribute
 - [ ] Improve documentation
 - [ ] Add unit tests
-- [ ] Implement error handling
+- [x] Implement error handling
 - [x] Add other commands (fetch, stream)
 - [ ] Anything else?
 
@@ -83,6 +84,12 @@ It defaults to 10 seconds but you can pass and optional interval flag if you'd l
 
 ```sh
 ./bsky -stream -interval=1s
+```
+
+Search for a given term and get 10 posts back
+
+```sh
+./bsky -search="Arcane"
 ```
 
 ## Usage with go run (dev mode)

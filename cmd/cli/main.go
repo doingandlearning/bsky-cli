@@ -32,6 +32,7 @@ func main() {
 	fetchFeed := flag.Bool("fetch", false, "Fetch the latest 10 posts from the feed")
 	stream := flag.Bool("stream", false, "Stream latest posts continuously")
 	interval := flag.Duration("interval", 10*time.Second, "Interval for streaming in seconds")
+	search := flag.String("search", "", "Search term for posts")
 	flag.Parse()
 
 	switch {
@@ -48,6 +49,15 @@ func main() {
 	case *stream:
 		fmt.Println("Starting stream...")
 		streamLatestPosts(authToken, did, *interval)
+	case *search != "":
+		posts, err := SearchPosts(authToken, *search)
+		if err != nil {
+			log.Fatalf("Error searching posts: %v", err)
+		}
+		fmt.Println(posts)
+		for _, post := range posts {
+			PrintPost(post)
+		}
 	default:
 		log.Fatalf("Error: Provide -content to post, -fetch to retrieve feed, or -stream to start streaming")
 	}
