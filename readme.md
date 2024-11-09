@@ -40,18 +40,39 @@ USERNAME=your_username
 APP_PASSWORD=your_password
 ```
 
-## Usage
+## Build 
+
+```sh
+go build -o bsky ./cmd/cli
+```
+
+## Usage 
 
 To create a post on BSky, run the following command:
 
 ```sh
-go run cmd/cli/main.go -content "Your post content here"
+./bsky -content "Your post content here"
 ```
 
 To list the last 10 posts from users in your feed:
 
 ```sh
-go run cmd/cli/main.go -fetch
+./bsky -fetch
+```
+
+
+## Usage with go run (dev mode)
+
+To create a post on BSky, run the following command:
+
+```sh
+go run cmd/cli/*.go -content "Your post content here"
+```
+
+To list the last 10 posts from users in your feed:
+
+```sh
+go run cmd/cli/*.go -fetch
 ```
 
 ## License
