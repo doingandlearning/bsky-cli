@@ -60,6 +60,17 @@ To list the last 10 posts from users in your feed:
 ./bsky -fetch
 ```
 
+To stream posts use the following command.
+
+```sh
+./bsky -stream
+```
+
+It defaults to 10 seconds but you can pass and optional interval flag if you'd like more or less frequent updates.
+
+```sh
+./bsky -stream -interval=1s
+```
 
 ## Usage with go run (dev mode)
 
