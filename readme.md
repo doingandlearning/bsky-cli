@@ -37,7 +37,7 @@ Create a `.env` file in the root directory of the project with the following con
 
 ```
 USERNAME=your_username
-APP_PASSWORD=your_app_passwo
+APP_PASSWORD=your_password
 ```
 
 ## Usage
@@ -46,6 +46,12 @@ To create a post on BSky, run the following command:
 
 ```sh
 go run cmd/cli/main.go -content "Your post content here"
+```
+
+To list the last 10 posts from users in your feed:
+
+```sh
+go run cmd/cli/main.go -fetch
 ```
 
 ## License
