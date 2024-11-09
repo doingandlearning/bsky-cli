@@ -42,6 +42,16 @@ USERNAME=your_username
 APP_PASSWORD=your_password
 ```
 
+If you'd like to change the colours used in the terminal, you can add these variables to your .env:
+
+```
+DISPLAY_NAME_COLOR=yellow
+TEXT_COLOR=blue
+URL_COLOR=white
+```
+
+Colours currently supported are red, green, yellow, blue, cyan, magenta and white.
+
 ## Build 
 
 ```sh
