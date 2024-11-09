@@ -6,6 +6,7 @@ It is very much a prototype right now.
 
 ## TODO:
 
+- [ ] Add color to the terminal
 - [ ] Work on build
 - [ ] Improve documentation
 - [ ] Add unit tests
