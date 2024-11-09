@@ -6,7 +6,8 @@ It is very much a prototype right now.
 
 ## TODO:
 
-- [ ] Add color to the terminal
+- [x] Add color to the terminal
+- [ ] Optionally exclude reposts
 - [ ] Work on build
 - [ ] Improve documentation
 - [ ] Add unit tests
