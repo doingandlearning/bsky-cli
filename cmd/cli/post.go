@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -45,4 +46,31 @@ func createPost(authToken, did, postContent string) error {
 
 	fmt.Println("Post created successfully!")
 	return nil
+}
+
+func PrintPost(post interface{}) {
+	postData, ok := post.(map[string]interface{})
+	if !ok {
+		return
+	}
+
+	authorData, _ := postData["post"].(map[string]interface{})["author"].(map[string]interface{})
+	displayName, _ := authorData["displayName"].(string)
+	record, _ := postData["post"].(map[string]interface{})["record"].(map[string]interface{})
+	text, _ := record["text"].(string)
+	uri, _ := postData["post"].(map[string]interface{})["uri"].(string)
+	url := transformUriToUrl(uri)
+
+	fmt.Printf("%s: %s (%s)\n", displayName, text, url)
+}
+
+func transformUriToUrl(uri string) string {
+	parts := strings.Split(uri, "/")
+	if len(parts) < 5 {
+		return uri
+	}
+
+	did := parts[2]
+	postId := parts[len(parts)-1]
+	return fmt.Sprintf("https://bsky.app/profile/%s/post/%s", did, postId)
 }
